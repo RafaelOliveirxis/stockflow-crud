@@ -57,6 +57,8 @@ form.addEventListener('submit',async e=>{
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email.value.trim(),senha:senha.value})
     });
+    const contentType=r.headers.get('content-type')||'';
+    if(!contentType.includes('application/json')) throw new Error('O servidor do StockFlow não está ativo. Feche o Live Server e execute "npm start"; depois abra http://localhost:3000.');
     const d=await r.json();
     if(!r.ok) throw new Error(d.erro||'Não foi possível entrar.');
     msg.textContent='Login realizado. Abrindo área administrativa...';
