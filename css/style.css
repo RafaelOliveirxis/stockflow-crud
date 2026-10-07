@@ -105,3 +105,9 @@ button{touch-action:manipulation}
 @media(min-width:851px){
   .nav nav{display:flex!important}
 }
+
+.login-card label{display:grid;gap:7px;font-size:12px;font-weight:800}
+.login-card input{width:100%;height:46px;border:1px solid var(--line);border-radius:9px;padding:0 13px;outline:none;background:#fff;color:var(--text)}
+.login-card .btn:disabled{opacity:.65;cursor:wait;transform:none}
+.login-demo{display:grid;gap:3px;margin-top:18px;padding:12px 14px;background:#f6f4ff;border:1px solid #e6e1ff;border-radius:10px;font-size:11px;color:var(--muted)}
+.login-demo strong{color:var(--text);font-size:12px}
