@@ -1,0 +1,1 @@
+{"name":"stockflow-crud","version":"1.0.0","private":true,"description":"Sistema acadêmico de gerenciamento de produtos","scripts":{"start":"npx serve ."}}
