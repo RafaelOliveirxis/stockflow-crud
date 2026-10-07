@@ -1,1 +1,1 @@
-{"name":"stockflow-crud","version":"1.0.0","private":true,"description":"Sistema acadêmico de gerenciamento de produtos","scripts":{"start":"npx serve ."}}
+{"name":"stockflow-crud","version":"2.0.0","private":true,"description":"Sistema administrativo acadêmico de gerenciamento de produtos e estoque","scripts":{"start":"node server.js","dev":"node server.js"},"dependencies":{"bcryptjs":"^2.4.3","better-sqlite3":"^11.7.0","express":"^4.21.2","express-session":"^1.18.1"}}
