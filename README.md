@@ -347,3 +347,19 @@ https://github.com/RafaelOliveirxis/stockflow-crud
 ## 📄 Licença
 
 Projeto desenvolvido para fins acadêmicos e educacionais.
+
+
+## ✨ Melhorias da versão 2.1
+- Dashboard conectado ao endpoint real de indicadores.
+- Gráfico de distribuição por categoria e alerta de estoque baixo.
+- Validação de nome, categoria, preço, estoque e URL de imagem no backend.
+- Cookie de sessão com expiração e configuração segura em produção.
+- Foreign keys do SQLite ativadas.
+- Mensagens de erro mais claras.
+- Dashboard, produtos, categorias e histórico integrados ao mesmo fluxo administrativo.
+- Interface mobile refinada e navegação consistente.
+
+## ▶️ Demonstração local
+Use `npm install` e depois `npm start`. O sistema abre em `http://localhost:3000/login.html`.
+
+**Atenção:** GitHub Pages sozinho não executa o `server.js`, porque o projeto possui backend Node.js. Para demonstrar o sistema completo, execute localmente ou publique o backend em um serviço Node compatível.
