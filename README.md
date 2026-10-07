@@ -360,6 +360,27 @@ Projeto desenvolvido para fins acadêmicos e educacionais.
 - Interface mobile refinada e navegação consistente.
 
 ## ▶️ Demonstração local
-Use `npm install` e depois `npm start`. O sistema abre em `http://localhost:3000/login.html`.
 
-**Atenção:** GitHub Pages sozinho não executa o `server.js`, porque o projeto possui backend Node.js. Para demonstrar o sistema completo, execute localmente ou publique o backend em um serviço Node compatível.
+**Importante:** não abra o sistema pelo botão **Go Live / Live Server** do VS Code (127.0.0.1:5500). O StockFlow possui backend Node.js e a API de login precisa estar ativa.
+
+Use no terminal, dentro da pasta do projeto:
+
+    npm install
+    npm start
+
+Depois abra:
+
+    http://localhost:3000
+
+ou:
+
+    http://localhost:3000/login.html
+
+**Login demonstrativo**
+
+    E-mail: admin@stockflow.local
+    Senha: admin123
+
+Se você acessar por 127.0.0.1:5500, o login não conseguirá encontrar /api/login, pois essa porta é do servidor estático do VS Code. O próprio formulário agora informa esse problema automaticamente.
+
+**Atenção:** GitHub Pages sozinho não executa o server.js, porque o projeto possui backend Node.js. Para demonstrar o sistema completo, execute localmente ou publique o backend em um serviço Node compatível.
