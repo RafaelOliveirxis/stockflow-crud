@@ -1,1 +1,75 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login | StockFlow</title><link rel="stylesheet" href="css/style.css"></head><body class="login-page"><main class="login-card"><div class="brand login-brand"><span class="brand-icon">SF</span><strong>StockFlow</strong></div><span class="eyebrow">ÁREA ADMINISTRATIVA</span><h1>Entrar no sistema</h1><p>Acesse o painel para controlar produtos, estoque, categorias e histórico.</p><form id="loginForm"><label>E-mail<input id="email" type="email" value="admin@stockflow.local" required></label><label>Senha<input id="senha" type="password" value="admin123" required></label><button class="btn primary" type="submit">Entrar →</button><div id="msg" class="login-msg"></div></form><small>Demo acadêmica: admin@stockflow.local / admin123</small></main><script>const f=document.getElementById('loginForm');f.addEventListener('submit',async e=>{e.preventDefault();const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email.value,senha:senha.value})});const d=await r.json();if(r.ok)location.href='index.html';else msg.textContent=d.erro||'Erro ao entrar'});</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5b46e8">
+<title>Login | StockFlow</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+<main class="login-card">
+  <div class="brand login-brand"><span class="brand-icon">SF</span><strong>StockFlow</strong></div>
+  <span class="eyebrow">ÁREA ADMINISTRATIVA</span>
+  <h1>Entrar no sistema</h1>
+  <p>Acesse o painel para controlar produtos, estoque, categorias e histórico.</p>
+  <form id="loginForm" novalidate>
+    <label for="email">E-mail
+      <input id="email" name="email" type="email" autocomplete="username" placeholder="seu@email.com" required>
+    </label>
+    <label for="senha">Senha
+      <input id="senha" name="senha" type="password" autocomplete="current-password" placeholder="Digite sua senha" required>
+    </label>
+    <button class="btn primary" id="loginBtn" type="submit">Entrar →</button>
+    <div id="msg" class="login-msg" role="alert" aria-live="polite"></div>
+  </form>
+  <div class="login-demo">
+    <strong>Acesso de demonstração</strong>
+    <span>admin@stockflow.local</span>
+    <span>Senha: admin123</span>
+  </div>
+</main>
+<script>
+const form=document.getElementById('loginForm');
+const email=document.getElementById('email');
+const senha=document.getElementById('senha');
+const msg=document.getElementById('msg');
+const btn=document.getElementById('loginBtn');
+
+(async()=>{
+  try{
+    const r=await fetch('/api/me',{credentials:'same-origin'});
+    const d=await r.json();
+    if(d.autenticado) location.replace('index.html');
+  }catch(e){}
+})();
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  msg.textContent='';
+  if(!form.reportValidity()) return;
+  btn.disabled=true;
+  btn.textContent='Entrando...';
+  try{
+    const r=await fetch('/api/login',{
+      method:'POST',
+      credentials:'same-origin',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email.value.trim(),senha:senha.value})
+    });
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.erro||'Não foi possível entrar.');
+    msg.textContent='Login realizado. Abrindo área administrativa...';
+    msg.style.color='#14845b';
+    location.replace('index.html');
+  }catch(err){
+    msg.textContent=err.message||'Erro ao conectar ao servidor.';
+    msg.style.color='#b42318';
+  }finally{
+    btn.disabled=false;
+    btn.textContent='Entrar →';
+  }
+});
+</script>
+</body>
+</html>
